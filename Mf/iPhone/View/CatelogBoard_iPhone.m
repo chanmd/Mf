@@ -32,6 +32,7 @@ DEF_NOTIFICATION( TIPS);
 - (void)unload
 {
 	[super unload];
+    //
 }
 
 #pragma mark Signal
