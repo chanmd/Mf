@@ -20,15 +20,22 @@
 #pragma mark -
 
 @interface StartCell : BeeUIGridCell
+{
+    BeeUIButton * _startbutton;
+    BeeUIButton * _feedbackbutton;
+    BeeUIButton * _tutorialbutton;
+}
+
+AS_SIGNAL( START );
+AS_SIGNAL( FEEDBACK );
+AS_SIGNAL( TUTORIAL );
 
 @end
 
 @interface CatelogBoard_iPhone : BeeUIBoard
 {
-    BeeUIButton * _startbutton;
+    StartCell * _startcell;
 }
 
-AS_SIGNAL( START );
-AS_SIGNAL( TIPS );
 
 @end
