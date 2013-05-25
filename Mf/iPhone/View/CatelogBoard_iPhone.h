@@ -32,9 +32,22 @@ AS_SIGNAL( TUTORIAL );
 
 @end
 
+@interface SegmentCell : BeeUIGridCell
+{
+    UILabel * _policelabel;
+    UILabel * _mafialabel;
+    UILabel * _townlabel;
+    UILabel * _judgelabel;
+    UIPickerView * _picker;
+    BeeUIButton * _nextbutton;
+}
+
+@end
+
 @interface CatelogBoard_iPhone : BeeUIBoard
 {
     StartCell * _startcell;
+    
 }
 
 

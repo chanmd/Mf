@@ -17,6 +17,15 @@
 
 #import "CatelogBoard_iPhone.h"
 
+@implementation SegmentCell
+
+- (void)handleUISignal_SegmentCell:(BeeUISignal *)signal
+{
+    
+}
+
+@end
+
 @implementation StartCell
 
 DEF_NOTIFICATION( START );
@@ -33,18 +42,20 @@ DEF_NOTIFICATION( TUTORIAL );
         _startbutton.title = @"开始";
         _startbutton.backgroundColor = [UIColor blackColor];
         [_startbutton addSignal:self.START forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_startbutton];
         
         
         _feedbackbutton = [[BeeUIButton alloc] initWithFrame:CGRectZero];
         _feedbackbutton.title = @"反馈";
         _feedbackbutton.backgroundColor = [UIColor blackColor];
         [_feedbackbutton addSignal:self.FEEDBACK forControlEvents:UIControlEventTouchUpInside];
-        
+        [self addSubview:_feedbackbutton];
         
         _tutorialbutton = [[BeeUIButton alloc] initWithFrame:CGRectZero];
         _tutorialbutton.title = @"帮助";
         _tutorialbutton.backgroundColor = [UIColor blackColor];
         [_tutorialbutton addSignal:self.TUTORIAL forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_tutorialbutton];
         
         //		[self showNavigationBarAnimated:NO];
         
@@ -66,19 +77,7 @@ DEF_NOTIFICATION( TUTORIAL );
 	}
 }
 
-- (void)handleUISignal_UINavigationBar:(BeeUISignal *)signal
-{
-    //	if ( [signal is:UINavigationBar.BARBUTTON_LEFT_TOUCHED] )
-    //	{
-    //		// TODO
-    //	}
-    if ( [signal is:UINavigationBar.BARBUTTON_RIGHT_TOUCHED] )
-    {
-        // TODO
-    }
-}
-
-- (void)handleUISignal_CatelogBoard_iPhone:(BeeUISignal *)signal
+- (void)handleUISignal_Other:(BeeUISignal *)signal
 {
     if ( [signal is:self.START] )
     {
@@ -99,7 +98,6 @@ DEF_NOTIFICATION( TUTORIAL );
         
     }
 }
-
 
 
 @end
@@ -129,21 +127,19 @@ DEF_NOTIFICATION( TUTORIAL );
 	{
 		self.view.backgroundColor = [UIColor whiteColor];
         
-        _startcell = [[StartCell alloc] initWithFrame:CGRectZero   ];
-        
-        
-        
+        _startcell = [[StartCell alloc] initWithFrame:CGRectZero];
         
 //		[self showNavigationBarAnimated:NO];
         
 	}
     else if ( [signal is:BeeUIBoard.DELETE_VIEWS] )
     {
-        
+        SAFE_RELEASE_SUBVIEW(_startcell);
     }
 	else if ( [signal is:BeeUIBoard.LAYOUT_VIEWS] )
 	{
-        
+        _startcell.frame = CGRectMake(10, 50, 300, 300);
+        [self.view addSubview:_startcell];
 	}
 }
 
